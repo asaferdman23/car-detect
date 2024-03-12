@@ -1,0 +1,18 @@
+.card {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 600px; /* adjust width as needed */
+  height: 500px; /* adjust width as needed */
+}
+
+.card-image {
+  width: 100%; /* adjust image width as needed */
+  height: 200px; /* adjust image height as needed */
+  object-fit: cover; /* maintain aspect ratio and crop if necessary */
+}
+
+.card-content {
+  padding: 10px;
+}

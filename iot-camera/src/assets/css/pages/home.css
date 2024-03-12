@@ -1,0 +1,41 @@
+.home-main {
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'sidebar content content content content card'
+      'footer footer footer footer footer footer';
+    grid-template-columns: 1fr 5fr 2fr 1fr;  /* Adjust column widths as needed */
+    grid-template-rows: 60px auto 1fr;  /* Adjust row heights as needed */
+    gap :10px;  /* Adjust gap as needed */
+    height: 100vh;  /* Adjust height as needed */
+    width: 100vw;  /* Adjust width as needed */
+    position: relative;  /* Required for fixed positioning of left-sidebar */
+  }
+  
+  .header {
+    grid-area: header;
+    /* Add your header styles here */
+  }
+  
+  .left-sidebar {
+    grid-area: sidebar;
+    background-color: #f5f5f5;  /* Example background color */
+    /* Add your sidebar styles here */
+  }
+  
+  .content {
+    grid-area: content;
+    /* Add your content styles here */
+  }
+  
+  .card {
+    grid-area: card;
+    top: 60px;
+    /* Add your image preview styles here */
+  }
+  
+  .footer {
+    grid-area: footer;
+    /* Add your footer styles here */
+  }
+  

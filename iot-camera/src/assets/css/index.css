@@ -1,0 +1,8 @@
+/* Pages */
+@import "./pages/home.css";
+
+/* Components */
+@import "./cmps/app-footer.css";
+@import "./cmps/app-header.css";
+@import "./cmps/card-model.css";
+@import "./cmps/side-bar.css";
