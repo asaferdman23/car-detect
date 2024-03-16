@@ -1,43 +1,82 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import mqtt from 'mqtt';
 
-import DataCmp from "../cmps/DataCmp";
-import Header from "../cmps/Header";
-import SideBarCmp from "../cmps/SideBarMenu";
-import CardContainer from "../cmps/CardContainer";
+// Import components (adjust paths accordingly)
+import DataCmp from '../cmps/DataCmp';
+import Header from '../cmps/Header';
+import SideBarCmp from '../cmps/SideBarMenu';
+import CardContainer from '../cmps/CardContainer';
+import GateStatistics from '../cmps/GateStatistics';
+import ResultImg from '../cmps/ResultImg.jsx';
 
-import { connectToMqtt } from "../services/subscriber.service.js"; // Assuming the file path is correct
-import criminalFinder from "../services/criminalFinder.service.js"; // Assuming the file path is correct
+// Import services (adjust paths accordingly)
+import { connectToMqtt } from '../services/subscriber.service.js';
+import criminalFinder from '../services/criminalFinder.service.js'; // (Optional)
 
-export function Home() {
+import '../assets/css/index.css';
+
+function Home() {
   const [mqttData, setMqttData] = useState(null);
-  const [isCriminal, setIsCriminal] = useState(false);
-  const [matchingWanted, setMatchingWanted] = useState(null); // State for matchingWanted
-  const [clientFromService, setClientFromService] = useState(null);
+  const [isCriminal, setIsCriminal] = useState(true);
+  const [client, setClient] = useState(null); // Reference the client instance
+  const [messages, setMessages] = useState([]);
+
+  // Use useRef to store the client instance consistently across renders
+  const mqttClientRef = useRef(null);
 
   useEffect(() => {
-    const client = criminalFinder.start();
-    console.log("Client connected to MQTT:", client); // Use commas for concatenation
+    // Fetch MQTT connection details (consider security best practices)
+    fetch('/mqttConnDetails')
+      .then(response => response.json())
+      .then(data => {
+        const { mqttServer, mqttTopic } = data; // Example destructuring
 
-    setClientFromService(client);
+        // Connect to MQTT broker securely
+        const mqttClient = connectToMqtt(mqttServer, {
+          username: 'mciotlogin',
+          password: 'Batw1ngs-Adm1n1!',
+          // ... other connection options
+        });
 
-    connectToMqtt((message) => {
-      setMqttData(JSON.parse(message));
-    });
+        setClient(mqttClient); // Store the client reference initially
 
+        mqttClientRef.current = mqttClient; // Store client in useRef
+
+        mqttClient.on('connect', () => {
+          console.log('Connected to MQTT broker');
+          mqttClient.subscribe(mqttTopic, (err) => {
+            if (err) {
+              console.error('Subscription error:', err);
+            }
+          });
+        });
+
+        // Handle incoming messages
+        mqttClient.on('message', async (topic, message) => {
+          const data = await fetchData(message.toString()); // Replace with your data fetching logic
+          setMqttData(data); // Update state with received data
+          // ... (Process the data, e.g., update isCriminal and display in ResultImg)
+        });
+      })
+      .catch(error => console.error('Error fetching MQTT connection details:', error));
+
+    // Cleanup function: Disconnect from MQTT broker on unmount
     return () => {
-      client.end(); // Disconnect on unmount
+      if (mqttClientRef.current) {
+        mqttClientRef.current.end(); // Disconnect from MQTT broker
+      }
     };
-  }, []);
+  }, []); // Run only once on component mount
+
+
   return (
     <div className="home-main">
-      {mqttData && (
-            <pre>{JSON.stringify(mqttData, null, 2)}</pre>
-      )}
-      {/* <AdminNavbar/> */}
-      <Header />
-      <SideBarCmp />
-      <DataCmp />
-      <CardContainer  />
+      <div className="container-home">
+        {/* <GateStatistics /> */}
+        <CardContainer />
+        <DataCmp />
+        <ResultImg isCriminal={isCriminal} />
+      </div>
     </div>
   );
 }

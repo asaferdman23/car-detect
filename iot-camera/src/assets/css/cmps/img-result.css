@@ -1,0 +1,9 @@
+.img-result {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.result-logo {
+    width: 400px;
+    height: 400px;
+}

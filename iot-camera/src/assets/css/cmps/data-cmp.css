@@ -1,17 +1,9 @@
 .data-cmp-main {
     /* Set a fixed height (adjust as needed) */
+    grid-column: 1/-1;
+    grid-row: 2;
     height: 300px;
-  
-    /* Optional: Set a maximum height to allow some vertical overflow */
-    max-height: calc(100vh - 100px - 100px);
-  
-    /* Maintain aspect ratio (optional) */
-    aspect-ratio: 16/9;
-  
-    /* Adjust other styles as needed */
-    grid-area: 2 / 2 / 5 / 5;
     background-color: var(--bcgd-main);
-    border-radius: 16px;
   }
   
   /* Add styles for responsive behavior (optional) */

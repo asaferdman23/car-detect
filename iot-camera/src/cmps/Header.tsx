@@ -1,5 +1,8 @@
 "use client";
 import React from "react";
+
+import logo from "../assets/imgs/M_blue.png";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,11 +13,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import SearchIcon from "@mui/icons-material/Search";
 import AdbIcon from "@mui/icons-material/Adb";
+import userLogo from "../assets/imgs/linkedin_crop.jpg";
+import "../assets/css/index.css";
 
-const pages = ["Home", "Profile", "Settings"];
+const pages = [];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
@@ -43,10 +50,28 @@ const Header = () => {
   return (
     <header className="header">
       <section className="header_container">
-        <AppBar className="head" >
+        <AppBar>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <img className="logo" alt="motoLOGO" src="./M_blue.svg.png" />
+              <img className="header-logo" alt="motoLOGO" src={logo} />
+              <Box
+                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 4 }}
+              >
+                <Button variant="text" sx={{ my: 2, color: "white" }}>
+                  Home
+                </Button>
+                <Button variant="text" sx={{ my: 2, color: "white" }}>
+                  About Us
+                </Button>
+              </Box>
+              {/* Search */}
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <TextField
+                  size="small"
+                  placeholder="Search"
+                  InputProps={{ endAdornment: <SearchIcon /> }}
+                />
+              </Box>
               <Typography
                 variant="h6"
                 noWrap
@@ -131,10 +156,7 @@ const Header = () => {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
-                    />
+                    <Avatar alt="Asaf" src={userLogo} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -154,7 +176,10 @@ const Header = () => {
                   onClose={handleCloseUserMenu}
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{}</Typography>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Switch User</Typography>
                   </MenuItem>
                 </Menu>
               </Box>

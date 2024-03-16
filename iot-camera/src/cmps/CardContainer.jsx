@@ -1,5 +1,6 @@
 import CardModel from "./CardModel"; // Assuming Card component is in the same directory
 import people from "../assets/data/people.js";
+import "../assets/css/index.css"
 
 function CardContainer() {
   const myData = people.map((person) => ({

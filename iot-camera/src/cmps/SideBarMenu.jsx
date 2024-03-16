@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"; // Import Link for navigation
 
 const SideBarMenu = () => {
   return (
-    <section className="side-bar">
+    <section className="sidebar">
         <div className="side-bar-header">
           <Link to="/">
-            <h1 className="side-bar-logo">MotoCamera</h1>
+            <h1 className="side-bar-logo">MotoDetect</h1>
           </Link>
           <hr className="separator" /> {/* Added line separator */}
         </div>
