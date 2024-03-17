@@ -1,11 +1,15 @@
 .card {
   display: flex;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 20px;
   justify-content: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   width: 600px; /* adjust width as needed */
   height: 500px; /* adjust width as needed */
+}
+
+.card.modal{
+  width: 400px; /* adjust width as needed */
+  height: 300px; /* adjust width as needed */
 }
 
 .card-image {

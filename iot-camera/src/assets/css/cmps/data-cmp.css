@@ -5,6 +5,10 @@
     height: 300px;
     background-color: var(--bcgd-main);
   }
+
+  .data-cmp-dialog-content{
+    display: flex;
+  }
   
   /* Add styles for responsive behavior (optional) */
   @media (max-width: 768px) {

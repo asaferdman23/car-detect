@@ -50,28 +50,22 @@ const Header = () => {
   return (
     <header className="header">
       <section className="header_container">
-        <AppBar>
-          <Container maxWidth="xl">
+        <AppBar sx={{boxShadow: "none"}}>
+          <Container maxWidth="xxl">
             <Toolbar disableGutters>
-              <img className="header-logo" alt="motoLOGO" src={logo} />
-              <Box
-                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 4 }}
-              >
-                <Button variant="text" sx={{ my: 2, color: "white" }}>
-                  Home
-                </Button>
-                <Button variant="text" sx={{ my: 2, color: "white" }}>
-                  About Us
-                </Button>
-              </Box>
-              {/* Search */}
-              <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                <TextField
-                  size="small"
-                  placeholder="Search"
-                  InputProps={{ endAdornment: <SearchIcon /> }}
-                />
-              </Box>
+              <div className="header-left">
+                <img className="header-logo" alt="motoLOGO" src={logo} />
+                <h1 className="header-brand-logo">MotoDetect</h1>
+                <Box className="header-search" sx={{ borderRadius: "5px" ,background:"white"}}>
+                  <TextField 
+                    sx={{ width: "100%", height: "100%" ,
+                    borderRadius: "5px" ,background:"#1976d2" ,color:"white"}}
+                    size="medium"
+                    placeholder="Search"
+                    InputProps={{ endAdornment: <SearchIcon /> }}
+                  />
+                </Box>
+              </div>
               <Typography
                 variant="h6"
                 noWrap

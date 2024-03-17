@@ -1,7 +1,6 @@
 #root {
   max-width: 100vw;
-  padding: 2rem;
-  text-align: center;
+  padding: 1em;
 }
 
 /* index.css */
@@ -35,7 +34,7 @@
 }
 
 @media (max-width: 768px) {
-  .grid-container {
+  .main-grid-container {
     grid-template-columns: 1fr; /* Single column for smaller screens */
   }
 }

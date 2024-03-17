@@ -1,30 +1,42 @@
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { NavLink,useMatch, useResolvedPath } from "react-router-dom";
+
+const CustomNavLink = ({ to, children, ...props }) => {
+  let resolved = useResolvedPath(to);
+  let match = useMatch({ path: resolved.pathname, end: true });
+
+  return (
+    <NavLink
+      to={to}
+      className={match ? "active-link" : ""}
+      {...props}
+    >
+      {children}
+    </NavLink>
+  );
+};
 
 const SideBarMenu = () => {
   return (
     <section className="sidebar">
-        <div className="side-bar-header">
-          <Link to="/">
-            <h1 className="side-bar-logo">MotoDetect</h1>
-          </Link>
-          <hr className="separator" /> {/* Added line separator */}
-        </div>
-        <nav className="side-bar-nav">
-          <ul className="nav-links">
-            <li>
-              <Link to="/">Overview</Link>
-            </li>
-            <li>
-              <Link to="/wanted">Wanted</Link>
-            </li>
-            <li>
-              <Link to="/cars">Cars</Link>
-            </li>
-            <li>
-              <Link to="/settings">Settings</Link>
-            </li>
-          </ul>
-        </nav>
+      <nav className="side-bar-nav">
+        <ul className="nav-links">
+          <li>
+            <CustomNavLink to="/">Overview</CustomNavLink>
+          </li>
+          <li>
+            <CustomNavLink to="/wanted">Wanted</CustomNavLink>
+          </li>
+          <li>
+            <CustomNavLink to="/cars">Cars</CustomNavLink>
+          </li>
+          <li>
+            <CustomNavLink to="/aboutus">About Us</CustomNavLink>
+          </li>
+          <li>
+            <CustomNavLink to="/settings">Settings</CustomNavLink>
+          </li>
+        </ul>
+      </nav>
     </section>
   );
 };

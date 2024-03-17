@@ -1,3 +1,4 @@
+
 const people = [
   {"id": 323234234, "name": "John Doe", "carPlateNumber": "1234567", "criminal": "no", "imgSrc": "path/to/image1.jpg", "countryId": "US"},
   {"id": 323234234, "name": "Jane Smith", "carPlateNumber": "2345678", "criminal": "yes", "imgSrc": "path/to/image2.jpg", "countryId": "US"},
@@ -21,7 +22,7 @@ const people = [
   {"id": 2323234234, "name": "Brian Anderson", "carPlateNumber": "0123456", "criminal": "no", "imgSrc": "path/to/image20.jpg", "countryId": "US"},
   {"id": 323234234, "name": "Asaf Erdman", "carPlateNumber": "123456", "criminal": "yes", "imgSrc": "path/to/image21.jpg", "countryId": "US"},
   {"id": 323234234, "name": "Shany gregor", "carPlateNumber": "2132343", "criminal": "yes", "imgSrc": "path/to/image22.jpg", "countryId": "US"},
-  {"id": 323234234, "name": "Meitar kahlon", "carPlateNumber": "3443434", "criminal": "yes", "imgSrc": "/assets/img/random.jpg", "countryId": "US"}
+  {"id": 323234234, "name": "Meitar kahlon", "carPlateNumber": "3443434", "criminal": "yes", "imgSrc": "../imgs/monkey1.png", "countryId": "US"}
 ];
 
 export default people;
