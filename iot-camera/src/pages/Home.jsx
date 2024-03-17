@@ -24,49 +24,49 @@ function Home() {
   // Use useRef to store the client instance consistently across renders
   const mqttClientRef = useRef(null);
 
-  useEffect(() => {
-    // Fetch MQTT connection details (consider security best practices)
-    fetch('/mqttConnDetails')
-      .then(response => response.json())
-      .then(data => {
-        const { mqttServer, mqttTopic } = data; // Example destructuring
+  // useEffect(() => {
+  //   // Fetch MQTT connection details (consider security best practices)
+  //   fetch('/mqttConnDetails')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const { mqttServer, mqttTopic } = data; // Example destructuring
 
-        // Connect to MQTT broker securely
-        const mqttClient = connectToMqtt(mqttServer, {
-          username: 'mciotlogin',
-          password: 'Batw1ngs-Adm1n1!',
-          // ... other connection options
-        });
+  //       // Connect to MQTT broker securely
+  //       const mqttClient = connectToMqtt(mqttServer, {
+  //         username: 'mciotlogin',
+  //         password: 'Batw1ngs-Adm1n1!',
+  //         // ... other connection options
+  //       });
 
-        setClient(mqttClient); // Store the client reference initially
+  //       setClient(mqttClient); // Store the client reference initially
 
-        mqttClientRef.current = mqttClient; // Store client in useRef
+  //       mqttClientRef.current = mqttClient; // Store client in useRef
 
-        mqttClient.on('connect', () => {
-          console.log('Connected to MQTT broker');
-          mqttClient.subscribe(mqttTopic, (err) => {
-            if (err) {
-              console.error('Subscription error:', err);
-            }
-          });
-        });
+  //       mqttClient.on('connect', () => {
+  //         console.log('Connected to MQTT broker');
+  //         mqttClient.subscribe(mqttTopic, (err) => {
+  //           if (err) {
+  //             console.error('Subscription error:', err);
+  //           }
+  //         });
+  //       });
 
-        // Handle incoming messages
-        mqttClient.on('message', async (topic, message) => {
-          const data = await fetchData(message.toString()); // Replace with your data fetching logic
-          setMqttData(data); // Update state with received data
-          // ... (Process the data, e.g., update isCriminal and display in ResultImg)
-        });
-      })
-      .catch(error => console.error('Error fetching MQTT connection details:', error));
+  //       // Handle incoming messages
+  //       mqttClient.on('message', async (topic, message) => {
+  //         const data = await fetchData(message.toString()); // Replace with your data fetching logic
+  //         setMqttData(data); // Update state with received data
+  //         // ... (Process the data, e.g., update isCriminal and display in ResultImg)
+  //       });
+  //     })
+  //     .catch(error => console.error('Error fetching MQTT connection details:', error));
 
-    // Cleanup function: Disconnect from MQTT broker on unmount
-    return () => {
-      if (mqttClientRef.current) {
-        mqttClientRef.current.end(); // Disconnect from MQTT broker
-      }
-    };
-  }, []); // Run only once on component mount
+  //   // Cleanup function: Disconnect from MQTT broker on unmount
+  //   return () => {
+  //     if (mqttClientRef.current) {
+  //       mqttClientRef.current.end(); // Disconnect from MQTT broker
+  //     }
+  //   };
+  // }, []); // Run only once on component mount
 
 
   return (
