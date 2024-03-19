@@ -2,7 +2,7 @@ import CardModel from "./CardModel"; // Assuming Card component is in the same d
 import people from "../assets/data/people.js";
 import "../assets/css/index.css"
 
-function CardContainer() {
+function CardContainer({isCardCriminal}) {
   const myData = people.map((person) => ({
     id: person.id,
     imageSrc: person.imgSrc,
@@ -16,7 +16,7 @@ function CardContainer() {
   return (
     <div className="card-container">
       {/* Render only the last card */}
-      <CardModel key={lastPerson.imageSrc} {...lastPerson} />
+      <CardModel isBgCriminal={isCardCriminal} imageSrc={lastPerson.imageSrc} {...lastPerson} />
     </div>
   );
 }

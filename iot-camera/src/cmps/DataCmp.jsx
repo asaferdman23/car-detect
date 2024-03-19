@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -27,6 +27,10 @@ function DataCmp() {
   const [open, setOpen] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState(null);
   console.log(selectedPerson);
+
+
+  // Handle row click to open the dialog with the selected person's details
+
   const handleRowClick = (params) => {
     setSelectedPerson(params.row);
     setOpen(true);
@@ -38,7 +42,8 @@ function DataCmp() {
 
   return (
     <div className="data-cmp-main">
-      <DataGrid
+      <DataGrid 
+        sx={{borderRadius:"10px"}}
         rows={[lastPerson]}
         columns={columns}
         onRowClick={handleRowClick}

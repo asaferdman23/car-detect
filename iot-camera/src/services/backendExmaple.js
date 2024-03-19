@@ -1,56 +1,54 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const http = require('http');
+const WebSocket = require('ws');
 const mqtt = require('mqtt');
 
 const app = express();
-const port = 3000; // Port for the Express server
-const mongoUrl = 'mongodb://localhost:27017'; // MongoDB connection string
-const dbName = 'myDatabase'; // Database name
-const collectionName = 'mqttMessages'; // Collection name
+const port = 5173;
 
-// Connect to the MQTT broker
-const mqttClient = mqtt.connect('mqtt://your_mqtt_broker_address', {
-  username: 'yourUsername',
-  password: 'yourPassword',
-});
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
 
-// Connect to MongoDB
-MongoClient.connect(mongoUrl, { useUnifiedTopology: true }, (err, client) => {
-  if (err) throw err;
-  console.log('Connected to MongoDB');
+// MQTT Client Setup
+const options = {
+  username: 'mciotlogin',
+  password: 'Batw1ngs-Adm1n1!'
+};
+console.log("before connecting");
+const mqttClient = mqtt.connect('mqtt://192.168.0.60:8080', options);
 
-  const db = client.db(dbName);
-  const collection = db.collection(collectionName);
-
-  // Subscribe to the MQTT broker
-  mqttClient.on('connect', () => {
-    console.log('Connected to MQTT broker');
-    mqttClient.subscribe('your/topic', (err) => {
-      if (err) throw err;
-    });
-  });
-
-  // Handle incoming MQTT messages
-  mqttClient.on('message', (topic, message) => {
-    const messageObject = { topic, message: message.toString(), timestamp: new Date() };
-    // Insert message into MongoDB
-    collection.insertOne(messageObject, (err, result) => {
-      if (err) throw err;
-      console.log("Message inserted into MongoDB", messageObject);
-    });
-  });
-
-  // Express route to fetch data
-  app.get('/data', async (req, res) => {
-    try {
-      const data = await collection.find({}).toArray();
-      res.json(data);
-    } catch (err) {
-      res.status(500).send(err.message);
+mqttClient.on('connect', () => {
+  // Subscribe to a topic
+  console.log("trying to connect");
+  mqttClient.subscribe("plates/event", (err) => {
+    if (!err) {
+      console.log('MQTT subscription to plates/event successful');
+    } else {
+      console.error('MQTT subscription failed', err);
     }
   });
+});
 
-  app.listen(port, () => {
-    console.log('Server running at http://localhost:${port}');
+// Forward MQTT messages to all connected WebSocket clients
+mqttClient.on('message', (topic, message) => {
+  console.log(`Received message from MQTT topic ${topic}: ${message.toString()}`);
+
+  // Forward the message to all connected WebSocket clients
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify({ topic, message: message.toString() }));
+    }
   });
+});
+
+// WebSocket connection handler
+wss.on('connection', (ws) => {
+  console.log('Client connected');
+  ws.on('message', (message) => {
+    console.log('Received message from client:', message);
+  });
+});
+
+server.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
 });

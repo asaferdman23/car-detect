@@ -1,12 +1,11 @@
 .home-main {
 grid-area: home-main;
-
 }
 
 .container-home {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  grid-gap:80px;
+  grid-gap: 10px;
   padding: 1em;
 }
