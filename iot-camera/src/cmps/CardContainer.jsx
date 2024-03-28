@@ -2,21 +2,13 @@ import CardModel from "./CardModel"; // Assuming Card component is in the same d
 import people from "../assets/data/people.js";
 import "../assets/css/index.css"
 
-function CardContainer({isCardCriminal}) {
-  const myData = people.map((person) => ({
-    id: person.id,
-    imageSrc: person.imgSrc,
-    title: "Card Title 1",
-    description: "Card description 1",
-  }));
+function CardContainer({imgSrc,isCardCriminal}) {
 
-  // Access the last element directly:
-  const lastPerson = myData[myData.length - 1];
-  console.log(lastPerson);
+
   return (
-    <div className="card-container">
+    <div className={`card-container ${isCardCriminal ? "criminal-card-container" : ""}`}>
       {/* Render only the last card */}
-      <CardModel isBgCriminal={isCardCriminal} imageSrc={lastPerson.imageSrc} {...lastPerson} />
+      <CardModel isBgCriminal={isCardCriminal} imageSrc={imgSrc} />
     </div>
   );
 }

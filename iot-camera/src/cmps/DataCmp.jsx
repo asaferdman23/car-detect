@@ -1,35 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Button from "@mui/material/Button";
-import people from "../assets/data/people.js";
+import React, { useState }from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+import CardModel from './CardModel';
 import "../assets/css/cmps/data-cmp.css";
-import CardContainer from "./CardContainer.jsx";
-import CardModel from "./CardModel.jsx";
 
-
-// Define your columns
 const columns = [
-  { field: "id", headerName: "ID", width: 100 },
-  { field: "name", headerName: "Name", width: 130 },
-  { field: "carPlateNumber", headerName: "Car Plate Number", width: 130 },
-  { field: "criminal", headerName: "Criminal", width: 130 },
-  { field: "time", headerName: "Time", width: 70 },
+  { field: "date", headerName: "Date", width: 500 },
+  { field: "location", headerName: "Location", width: 300 },
+  { field: "name", headerName: "Name", width: 300 },
+  { field: "plateNumber", headerName: "Plate Number", width: 300 },
+  { field: "suspicious", headerName: "Suspicious", width: 300 },
 ];
 
-const lastPerson = people[people.length - 1];
-const uniquePeople = people.map((lastPerson, index) => ({ ...lastPerson, id: index }));
-
-function DataCmp() {
+function DataCmp({ people }) {
+  console.log("in dataTmp People:", people);
   const [open, setOpen] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState(null);
-  console.log(selectedPerson);
 
-
-  // Handle row click to open the dialog with the selected person's details
+  // Flatten the array of arrays structure and add unique id to each person
+  const rows = people.flat().map((person, index) => ({
+    ...person,
+    id: index, // Ensure each row has a unique id
+    date: person.Date, // Assuming 'time' corresponds to 'Date'
+    plateNumber: person.PlateNumber, // Ensure field names match column definitions
+    name: person.Name,
+    location: person.Location,
+    suspicious: person.Suspeciouse ? "Yes" : "No", // Convert boolean to string if necessary
+  }));
+  
+  console.log("in dataTmp rows:", rows);
 
   const handleRowClick = (params) => {
     setSelectedPerson(params.row);
@@ -42,9 +45,9 @@ function DataCmp() {
 
   return (
     <div className="data-cmp-main">
-      <DataGrid 
-        sx={{borderRadius:"10px"}}
-        rows={[lastPerson]}
+      <DataGrid
+        sx={{ fontSize: "25px" }}
+        rows={rows}
         columns={columns}
         onRowClick={handleRowClick}
         pageSize={5}
@@ -52,17 +55,16 @@ function DataCmp() {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Person Details</DialogTitle>
         <DialogContent className="data-cmp-dialog-content">
-          {/* Render the selected person's details here. For example: */}
-          {selectedPerson && (
+          {/* {selectedPerson && (
             <div>
-              <CardModel cmp="modal" imageSrc={selectedPerson.imageSrc} person={selectedPerson} />
-              <p>ID: {selectedPerson.id}</p>
-              <p>Name: {selectedPerson.name}</p>
-              <p>Car Plate Number: {selectedPerson.carPlateNumber}</p>
-              <p>Criminal: {selectedPerson.criminal ? "Yes" : "No"}</p>
-              <p>Time: {selectedPerson.time}</p>
+              <CardModel cmp="modal" imageSrc={selectedPerson.imgSrc} />
+              <ul>
+                {Object.entries(selectedPerson).map(([key, value]) => (
+                  <li key={key}>{${key}: ${value}}</li>
+                ))}
+              </ul>
             </div>
-          )}
+          )} */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>

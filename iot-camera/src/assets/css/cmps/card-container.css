@@ -3,3 +3,10 @@
     grid-row: 1;
     border-radius: 100px;
 }
+.card-container.bg-criminal{
+    background-color: red !important;
+  }
+  
+  .card-container.bg-not-criminal{
+    background-color: green !important;
+  }

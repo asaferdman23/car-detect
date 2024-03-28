@@ -7,12 +7,12 @@
 /* index.css */
 .main-grid-container {
   display: grid;
-  grid-template-columns: 200px 1fr; /* Sidebar width and main content width */
+  grid-template-columns: 200px 2fr; /* Sidebar width and main content width */
   grid-template-rows: auto auto auto; /* Heights for header, main content, and footer */
   grid-template-areas:
-    "header header"
-    "sidebar home-main"
-    "app-footer app-footer";
+    "header header "
+    "sidebar home-main "
+    "app-footer app-footer ";
 }
 
 .footer {

@@ -13,13 +13,9 @@
 }
 
 .card-image {
-  width: 100%; /* adjust image width as needed */
-  height: 200px; /* adjust image height as needed */
-  object-fit: cover; /* maintain aspect ratio and crop if necessary */
-}
-
-.card-content {
-  padding: 10px;
+  width: 450px; /* adjust image width as needed */
+  height: 300px; /* adjust image height as needed */
+  object-fit:contain /* maintain aspect ratio and crop if necessary */
 }
 
 .card-content.bg-criminal{

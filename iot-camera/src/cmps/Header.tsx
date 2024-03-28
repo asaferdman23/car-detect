@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import logo from "../assets/imgs/M_blue.png";
+import logo from "/imgs/M_blue.png";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -18,7 +18,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
 import AdbIcon from "@mui/icons-material/Adb";
-import userLogo from "../assets/imgs/linkedin_crop.jpg";
+import userLogo from "/imgs/linkedin_crop.jpg";
 import "../assets/css/index.css";
 
 const pages = [];
@@ -55,11 +55,11 @@ const Header = () => {
             <Toolbar disableGutters>
               <div className="header-left">
                 <img className="header-logo" alt="motoLOGO" src={logo} />
-                <h1 className="header-brand-logo">MotoDetect</h1>
-                <Box className="header-search" sx={{ borderRadius: "5px" ,background:"white"}}>
+                <h1 className="header-brand-logo">Moto Detect</h1>
+                <Box className="header-search" sx={{borderRadius: "5px" ,background:"white"}}>
                   <TextField 
-                    sx={{ width: "100%", height: "100%" ,
-                    borderRadius: "5px" ,background:"#1976d2" ,color:"white"}}
+                    sx={{ color:"white",width: "100%", height: "100%" ,
+                    borderRadius: "5px" ,background:"#1976d2"}}
                     size="medium"
                     placeholder="Search"
                     InputProps={{ endAdornment: <SearchIcon /> }}

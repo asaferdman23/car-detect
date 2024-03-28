@@ -1,17 +1,13 @@
 
-import apprvoed_icon from "../assets/imgs/approved_icon.png"
-import wanted_icon from "../assets/imgs/wanted_icon.png"
+import React from 'react';
+import apprvoed_icon from "/imgs/approved.png"
+import wanted_icon from "/imgs/suspicious.png"
 
-function ResultImg(isCriminalLogo) {
-    console.log(isCriminalLogo);
-    let logo = null;
-    logo = isCriminalLogo ? wanted_icon : apprvoed_icon;
+function ResultImg({isCriminalLogo}) {
     return (
-        logo && 
         <div className="img-result">
-           <img className="result-logo" alt="result-logo" src={logo} />
+          <img className="result-logo" alt="result-logo" src={isCriminalLogo ?  wanted_icon : apprvoed_icon} />
         </div>
     );
 }
-
 export default ResultImg;

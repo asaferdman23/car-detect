@@ -1,4 +1,5 @@
 .sidebar {
+  font-size: 27px;
   grid-area: sidebar;
   position: fixed;
   display: flex;

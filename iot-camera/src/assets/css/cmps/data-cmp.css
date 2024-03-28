@@ -1,8 +1,12 @@
 .data-cmp-main {
     /* Set a fixed height (adjust as needed) */
     grid-column: 1/-1;
-    grid-row: 2;
+    grid-row: 3;
     height: 300px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    bottom: 0;
     background-color: var(--bcgd-main);
   }
 
