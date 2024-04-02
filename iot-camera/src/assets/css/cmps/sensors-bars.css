@@ -1,0 +1,17 @@
+/* sensors-reading-cmp */
+.sensors-reading-cmp {
+    display: flex;
+    flex-direction: row; /* This ensures children are laid out in a row, but it's the default behavior */
+    justify-content: center; /* This centers the children horizontally */
+    align-items: center; /* This centers the children vertically */
+    gap: 20px; /* Adds some space between the children */
+}
+
+/* sensors-events */
+.sensors-event, .sensors-sensors {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column; /* Assuming you want the content in these divs to stack vertically */
+}

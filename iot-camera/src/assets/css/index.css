@@ -1,5 +1,6 @@
 /* Pages */
 @import "./pages/home.css";
+@import "./pages/helo.css";
 
 /* Components */
 @import "./cmps/app-footer.css";
@@ -9,3 +10,4 @@
 @import "./cmps/img-result.css";
 @import "./cmps/card-container.css";
 @import "./cmps/card-detail.css";
+@import "./cmps/sensors-bars.css";

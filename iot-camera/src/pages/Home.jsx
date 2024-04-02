@@ -30,28 +30,6 @@ function Home() {
   const handleNewPerson = (newData) => {
     setPeople((currentPeople) => [...currentPeople, newData]);
   };
-
-  // Combined handler for new MQTT messages
-  // const handleNewMessage = (message) => {
-    
-  //   // Assuming message is the raw message string
-  //   console.log("Received message inside useEffect:", message);
-
-  //   // Update the messages state with the new message
-  //   setMqttData((currentMessages) => [...currentMessages, message]);
-
-  //   // Parse the message for person data
-  //   let personDataInString= message.toString();
-  //   const personData = parseMessage(personDataInString);
-  //   if (personData) {
-  //     person = people.find((p) => p.carPlate === personData.PlateNumber);
-  //     console.log(person ? "Person found" : "Person not found");
-  //     console.log("Person:", person);
-  //     setPhoto(person ? person.imgSrc : null);
-  //     setPeople((currentPeople) => [...currentPeople, personData]);
-  //     setIsCriminal(personData.Suspeciouse === "yes");
-  //   }
-  // };
   useEffect(() => {
     const mqttClient = connectToMqtt((message) => {
       console.log("Received message inside useEffect:", message);
@@ -68,12 +46,7 @@ function Home() {
         });
         setIsCriminal(lastPersonElement.Suspeciouse == true);
         handleNewPerson(personObject);
-        //setClient(personObject);
       }
-      // setClient(person);
-     // CAM I GET THE LAST ELEMENT IN THE ARRAY OF OBJECTS IN LOG ?
-
-     //handleNewMessage(message);
     });
     return () => mqttClient.end();
   }, []);
