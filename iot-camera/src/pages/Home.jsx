@@ -48,7 +48,6 @@ function Home() {
         handleNewPerson(personObject);
       }
     });
-    return () => mqttClient.end();
   }, []);
 
   return (

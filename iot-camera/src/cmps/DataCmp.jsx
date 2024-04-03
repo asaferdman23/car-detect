@@ -20,19 +20,26 @@ function DataCmp({ people }) {
   console.log("in dataTmp People:", people);
   const [open, setOpen] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState(null);
-
-  // Flatten the array of arrays structure and add unique id to each person
-  const rows = people.flat().map((person, index) => ({
-    ...person,
-    id: index, // Ensure each row has a unique id
-    date: person.Date, // Assuming 'time' corresponds to 'Date'
-    plateNumber: person.PlateNumber, // Ensure field names match column definitions
-    name: person.Name,
-    location: person.Location,
-    suspicious: person.Suspeciouse ? "Yes" : "No", // Convert boolean to string if necessary
-  }));
+  let onepeople = people[people.length - 1];
+  console.log("onepeople:", onepeople);
+// Check if onepeople is defined before calling map
+const rows = onepeople ? onepeople.map((person, index) => ({
+  ...person,
+  id: index, // Ensure each row has a unique id
+  date: person.Date, // Assuming 'time' corresponds to 'Date'
+  plateNumber: person.PlateNumber, // Ensure field names match column definitions
+  name: person.Name,
+  location: person.Location,
+  suspicious: person.Suspeciouse ? "Yes" : "No", // Convert boolean to string if necessary
+})) : [];
   
-  console.log("in dataTmp rows:", rows);
+  // const lastArray = people[people.length - 1];
+  // const lastPerson = lastArray[lastArray.length - 1];
+  
+  // console.log(lastPerson); // Logs the last person from the last array
+
+
+// console.log(lastPerson); // Logs the last person from the last array
 
   const handleRowClick = (params) => {
     setSelectedPerson(params.row);

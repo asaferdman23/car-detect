@@ -8,6 +8,7 @@ const PeopleDetailCard = ({ details }) => {
                 <p className="card-text">Car Plate Number: {details.PlateNumber}</p>
                 <p className="card-text">Name: {details.Name}</p>
                 <p className="card-text">Date: {details.Date}</p>
+                <p className="card-text">Loacation: {details.Location}</p>
             </div>
         </div>
     );

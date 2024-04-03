@@ -7,4 +7,5 @@ grid-area: home-main;
   grid-template-columns: 1fr 0.5fr 2fr;
   grid-template-rows: 1fr 0.5fr;
   padding: 1em;
+  gap: 7px;
 }

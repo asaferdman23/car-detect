@@ -41,19 +41,28 @@ export function parseMessage(message) {
   let isPersonSuspecious = isCriminalFound(carPlateNumber);
   let peopleName = matchCarPlateWithPeople(carPlateNumber);
   console.log("personName: AFTER MATCHING ",peopleName);
-  const regex = /(.*): Plate #: (\w+), Camera ID: (\w+), Direction: (\d+)/;
+  const regex = /(.*): Plate #: (\w+), Camera ID: (.*), Direction: (\d+)/;
   const match = message.match(regex);
+  console.log("After Parsing " + match);
   if (match) {
     return {
       Date: match[1], // Extracted time from the message
       PlateNumber: match[2], // Extracted car plate number from the message
       Name: peopleName ? peopleName : "Unkown", // Name unknown from MQTT message
-      Suspeciouse: isPersonSuspecious ? isPersonSuspecious : "No", // Criminal status unknown from MQTT message
+      Suspeciouse: isPersonSuspecious ? isPersonSuspecious : false, // Criminal status unknown from MQTT message
+      Location: match[3],
+      Imgsrc:peopleImg ? peopleImg : "" // Extracted location from the message
+    };
+  } else {
+    return {
+      Date: match[1], // Extracted time from the message
+      PlateNumber: match[2], // Extracted car plate number from the message
+      Name: peopleName ? peopleName : "Unkown", // Name unknown from MQTT message
+      Suspeciouse: isPersonSuspecious ? isPersonSuspecious : false, // Criminal status unknown from MQTT message
       Location: match[3],
       Imgsrc:peopleImg ? peopleImg : "" // Extracted location from the message
     };
   }
-  return null;
 }
 
 function extractCarPlateNumber(message) {
@@ -86,14 +95,16 @@ export function connectToMqtt(onMessage) {
     // const carPlateNumber = extractCarPlateNumber(message.toString());
     // console.log("Car Plate Number:", carPlateNumber);
     details = parseMessage(rawMessage);
-    console.log("Details:", details);
+    console.log("Details before the if:", details);
     if (details) {
+      console.log("Details:", details);
       //let personArrived = matchCarPlateWithPeople(details.PlateNumber);
       //console.log(`${personArrived} is arrived`);
       messages.push(details);
       console.log("Messages after pushing details:", messages);
       onMessage(details);
     } else {
+      parseMessage(rawMessage);
       console.log("Could not parse message or no match found.");
     }
   });
