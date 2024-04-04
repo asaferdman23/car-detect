@@ -365,10 +365,13 @@ const SensorApexChart = () => {
       plotOptions: {
         bar: {
           horizontal: true,
-          
+          distributed:true,
         }
       },
-      colors: ['#1976d2'],
+      //blue #1976d2
+      //red #ff0000
+      colors: ['#ff0000','#1976d2','#ff0000','#ff0000','#ff0000', '#1976d2','#1976d2','#1976d2'
+      ,'#1976d2','#1976d2','#ff0000','#ff0000','#1976d2'],
     dataLabels: {
         formatter: function(val, opt) {
             const goals = opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex].goals;
