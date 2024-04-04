@@ -11,3 +11,7 @@
 @import "./cmps/card-container.css";
 @import "./cmps/card-detail.css";
 @import "./cmps/sensors-bars.css";
+@import "./cmps/sensor-card-detail.css";
+@import "./cmps/sensor-img-result.css";
+@import "./cmps/sensors-apex-chart.css";
+@import "./cmps/sensor-data-cmp.css";

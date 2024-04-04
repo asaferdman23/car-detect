@@ -1,6 +1,7 @@
 /* sensors-reading-cmp */
 .sensors-reading-cmp {
-    display: flex;
+    grid-area: sensor-card-image;
+    display: grid;
     flex-direction: row; /* This ensures children are laid out in a row, but it's the default behavior */
     justify-content: center; /* This centers the children horizontally */
     align-items: center; /* This centers the children vertically */

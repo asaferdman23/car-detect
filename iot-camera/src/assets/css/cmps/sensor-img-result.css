@@ -1,0 +1,5 @@
+.sensor-img-result{
+    display: flex;
+    align-items: center;
+    grid-area: sensor-img-result;
+}

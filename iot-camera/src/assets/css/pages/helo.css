@@ -1,7 +1,8 @@
 .helo-container{
+    padding: 30px;
     display: grid;
-    justify-items: center;
-    align-items: center;
-
+    grid-template-areas: 
+    "sensor-reading-cmp sensor-card-detail sensor-img-result"
+    "sensor-data-cmp sensor-data-cmp sensor-data-cmp ";
     grid-area: home-main;
 }

@@ -1,0 +1,9 @@
+.sensors-apex-chart{
+    display:grid;
+    grid-area: sensor-reading-cmp;
+}
+.h1-class-chart {
+    font-size: 40px;
+    color: #1976d2;
+    font-weight: 300;
+}
