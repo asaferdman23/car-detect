@@ -23,6 +23,7 @@ function Home() {
   const [messages, setMessages] = useState([]);
   const [people, setPeople] = useState([]); // List of people
   const [photo, setPhoto] = useState([]); // List of Photos
+  const [isCrimnalLogo, setIsCrimnalLogo] = useState(null); // List of Photos
   const [details, setDetails] =useState([]);  
 
   let person="";
@@ -45,6 +46,7 @@ function Home() {
           PlateNumber : lastPersonElement.PlateNumber
         });
         setIsCriminal(lastPersonElement.Suspeciouse == true);
+        setIsCrimnalLogo(lastPersonElement.Suspeciouse == true);
         handleNewPerson(personObject);
       }
     });
@@ -56,7 +58,7 @@ function Home() {
         <CardContainer imgSrc={photo} isCardCriminal={isCriminal} />
         <PeopleDetailCard details ={details}/>
         <DataCmp people={people} />
-        <ResultImg isCriminalLogo={isCriminal} />
+        <ResultImg isCriminalLogo={isCrimnalLogo} />
       </div>
       </div>
   );

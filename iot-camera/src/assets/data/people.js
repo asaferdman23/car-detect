@@ -17,17 +17,11 @@ const people = [
   {"Model": "toyota", "name": "Christopvis", "carPlateNumber": "668450B", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png", },
   {"Model": "toyota", "name": "Daniel G", "carPlateNumber": "G2HT451", "suspicious": "no", "imgSrc": "/imgs/toyota2.png", },
   {"Model": "toyota", "name": "Daniel Garmrmr", "carPlateNumber": "2HT451", "suspicious": "no", "imgSrc": "/imgs/toyota2.png", },
+  {"Model": "toyota", "name": "John Doe","carPlateNumber": "976MSI2", "suspicious": "no", "imgSrc": "/imgs/toyota.png",},
   {"Model": "toyota", "name": "Paul Rod", "carPlateNumber": "EK3333", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png", },
-  {"Model": "toyota", "name": "Mark Mar", "carPlateNumber": "MNG7280", "suspicious": "no", "imgSrc": "/imgs/toyota2.png", },
-  {"Model": "toyota", "name": "Donald Hez", "carPlateNumber": "5678901", "suspicious": "yes", "imgSrc": "/imgs/toyota2.png", },
-  {"Model": "toyota", "name": "George L", "carPlateNumber": "6789012", "suspicious": "no", "imgSrc": "/imgs/toyota2.png", },
-  {"Model": "toyota", "name": "Kenneth ez", "carPlateNumber": "7890123", "suspicious": "yes", "imgSrc": "/imgs/toyota2.png", },
-  {"Model": "toyota", "name": "Steven P", "carPlateNumber": "8901234", "suspicious": "no", "imgSrc": "/imgs/toyota4.png", },
-  {"Model": "toyota", "name": "Edward W", "carPlateNumber": "7DC0657", "suspicious": "yes", "imgSrc": "/imgs/toyota2.png", },
-  {"Model": "toyota", "name": "Brian An", "carPlateNumber": "0123456", "suspicious": "no", "imgSrc": "/imgs/toyota4.png", },
-  {"Model": "toyota", "name": "Asaf Erdman", "carPlateNumber": "123456", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png", },
-  {"Model": "toyota", "name": "Shany gre", "carPlateNumber": "CDD7066", "suspicious": "yes", "imgSrc": "/imgs/toyota4.png", },
-  {"Model": "toyota", "name": "Meitar ka", "carPlateNumber": "EUS687", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png"}
+  {"Model": "toyota", "name": "Edward W", "carPlateNumber": "WIN672F", "suspicious": "yes", "imgSrc": "/imgs/toyota2.png", },
+  {"Model": "toyota", "name": "Brian An", "carPlateNumber": "HL76JE2", "suspicious": "no", "imgSrc": "/imgs/toyota4.png", },
+  {"Model": "toyota", "name": "Meitar ka", "carPlateNumber": "G2HT451", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png"}
 ]
 
 export default people;
