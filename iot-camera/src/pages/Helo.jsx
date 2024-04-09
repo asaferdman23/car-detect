@@ -36,7 +36,13 @@ export function Helo() {
         try {
           if (topic === '/halo/sensors') {
             console.log('Parsing message:', message.toString(), 'Length:', message.toString().length);
-            const dataFromJsonSensors = JSON.parse(message.toString());            
+            const dataPart = message.toString().split(':').slice(2).join(':').trim();
+            const pairs = dataPart.split(',').map(pair => pair.trim());
+            const dataFromJsonSensors = pairs.reduce((obj, pair) => {
+              const [key, value] = pair.split(':').map(part => part.trim());
+              obj[key] = value;
+              return obj;
+            }, {});
             const chartData = Object.entries(dataFromJsonSensors).map(([key, value]) => ({ sensor: key, value }));
             console.log("data from the sensors",dataFromJsonSensors);
             setSensorData(chartData);

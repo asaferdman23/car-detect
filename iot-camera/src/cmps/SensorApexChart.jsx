@@ -56,7 +56,7 @@ const SensorApexChart = ({ data }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       // Use the provided data prop or fallback to dummyData
-      const currentData =data;
+      const currentData = data;
       console.log("Log of data from parent ", currentData);
   
       const seriesData = Object.entries(currentData)
