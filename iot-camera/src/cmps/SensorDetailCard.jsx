@@ -10,7 +10,7 @@ const SensorDetailCard = ({ details }) => {
         <div className="sensor-card-detail">
             <div className="card-body">
                 <p className="sensor-card-text">Date: {currentDateTime}</p>
-                <p className="sensor-card-text">Loacation: Halo_Sensor_Toha</p>
+                <p className="sensor-card-text">Location: Halo_Sensor_Toha</p>
                 <p className="sensor-card-text">Event: Motion</p>
                 {/* <p className="sensor-card-text">:</p> */}
             </div>

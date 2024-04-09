@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState,useEffect }from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -23,16 +23,10 @@ const dummyPeople = [
     Location: "Halo_Sensor_Toha",
     Suspeciouse: true,
   },
-  {
-    Date:`${currentDateTime}`,
-    EventName: "Motion",
-    Location: "Halo_Sensor_Toha",
-    Suspeciouse: true,
-  },
   // Add more objects for more rows
 ];
 
-function SensorDataCmp({ people = dummyPeople}) {
+function SensorDataCmp({ people,isPopped}) {
   console.log("in dataTmp People:", people);
   const [open, setOpen] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState(null);
@@ -40,14 +34,26 @@ function SensorDataCmp({ people = dummyPeople}) {
 //   let onepeople = people[people.length - 1];
 //   console.log("onepeople:", onepeople);
 // Changing the flat()...
-const rows = people ? people.map((person, index) => ({
-  ...person,
-  id: index, // Ensure each row has a unique id
-  date: person.Date, // Assuming 'time' corresponds to 'Date'
-  eventName: person.EventName, // Ensure field names match column definitions
-  location: person.Location,
-  suspicious: person.Suspeciouse ? "Yes" : "No", // Convert boolean to string if necessary
-})) : [];
+const [rows, setRows] = useState([]);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setRows(
+      people.map((person, index) => ({
+        ...person,
+        id: index,
+        date: isPopped ? new Date().toLocaleString() : person.Date,
+        eventName: person.EventName,
+        location: person.Location,
+        suspicious: person.Suspeciouse ? "Yes" : "No",
+      }))
+    );
+  }, 3000); // Delay of 1 second
+
+  // Cleanup function to clear the timeout if the component unmounts before the timeout finishes
+  return () => clearTimeout(timer);
+}, [people, isPopped]);
+
   
   const handleRowClick = (params) => {
     setSelectedPerson(params.row);

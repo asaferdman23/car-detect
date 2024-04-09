@@ -74,7 +74,7 @@ function extractCarPlateNumber(message) {
 
 let messages = [];
 
-export function connectToMqtt(onMessage) {
+export function connectToMqtt(onMessage,onPublish) {
   let details=""
   const options = {
     username: 'edgeRtu',
@@ -103,6 +103,20 @@ export function connectToMqtt(onMessage) {
       messages.push(details);
       console.log("Messages after pushing details:", messages);
       onMessage(details);
+
+      const publishData = {
+        data : details.Date,
+        carPlateNumber:details.PlateNumber
+      };
+      client.publish('car',JSON.stringify(publishData),(err) =>{
+        if (err) {
+          console.error('Error publishing:', err);
+          onPublish(false);
+        } else {
+          console.log("Publishing to car :",JSON.stringify(publishData));
+          onPublish(true);
+        }
+      });
     } else {
       parseMessage(rawMessage);
       console.log("Could not parse message or no match found.");
@@ -116,4 +130,9 @@ export function connectToMqtt(onMessage) {
 export const getMessages = () => {
   console.log("Messages from subscriber:", messages);
   return messages;
+}
+
+// please make an exported boolean function that will be true if the mqtt client publish was a sucsess
+export function wasPublishSuccessful(err) {
+  return !err;
 }
