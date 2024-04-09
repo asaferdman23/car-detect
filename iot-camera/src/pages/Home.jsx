@@ -82,7 +82,7 @@ function Home() {
         className="Modal"
         overlayClassName="Overlay"
       >
-        <h2>Details was sent to the officer `${details}`</h2>
+        <h2>Details was sent to the officer</h2>
         <button onClick={closeModal}>Close</button>
       </Modal>
     </div>

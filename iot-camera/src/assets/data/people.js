@@ -15,13 +15,12 @@ const people = [
   {"Model": "toyota", "name": "Thomas M", "carPlateNumber": "HL76JE2", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png", },
   {"Model": "toyota", "name": "Thomas M", "carPlateNumber": "HL76JE", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png", },
   {"Model": "toyota", "name": "Christopvis", "carPlateNumber": "668450B", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png", },
-  {"Model": "toyota", "name": "Daniel G", "carPlateNumber": "G2HT451", "suspicious": "no", "imgSrc": "/imgs/toyota2.png", },
+  {"Model": "toyota", "name": "Daniel G", "carPlateNumber": "G2HT451", "suspicious": "no", "imgSrc": "/imgs/toyota_CUSTOM.png", },
   {"Model": "toyota", "name": "Daniel Garmrmr", "carPlateNumber": "2HT451", "suspicious": "no", "imgSrc": "/imgs/toyota2.png", },
   {"Model": "toyota", "name": "John Doe","carPlateNumber": "976MSI2", "suspicious": "no", "imgSrc": "/imgs/toyota.png",},
   {"Model": "toyota", "name": "Paul Rod", "carPlateNumber": "EK3333", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png", },
   {"Model": "toyota", "name": "Edward W", "carPlateNumber": "WIN672F", "suspicious": "yes", "imgSrc": "/imgs/toyota2.png", },
   {"Model": "toyota", "name": "Brian An", "carPlateNumber": "HL76JE2", "suspicious": "no", "imgSrc": "/imgs/toyota4.png", },
-  {"Model": "toyota", "name": "Meitar ka", "carPlateNumber": "G2HT451", "suspicious": "yes", "imgSrc": "/imgs/toyota3.png"}
 ]
 
 export default people;
