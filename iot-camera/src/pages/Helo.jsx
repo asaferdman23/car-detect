@@ -36,23 +36,47 @@ export function Helo() {
         try {
           if (topic === '/halo/sensors') {
             console.log('Parsing message:', message.toString(), 'Length:', message.toString().length);
-            const dataPart = message.toString().split(':').slice(2).join(':').trim();
+            const messageString = message.toString();
+
+            const tempIndex = messageString.indexOf('Temp:');
+            if (tempIndex === -1) {
+                console.error('Could not find Temp in message:', message.toString());
+                return;
+            }
+
+            const dataPart = messageString.substring(tempIndex).trim();
             const pairs = dataPart.split(',').map(pair => pair.trim());
             const dataFromJsonSensors = pairs.reduce((obj, pair) => {
-              const [key, value] = pair.split(':').map(part => part.trim());
-              obj[key] = value;
-              return obj;
+                const [key, value] = pair.split(':').map(part => part.trim());
+                obj[key] = value;
+                return obj;
             }, {});
+
             const chartData = Object.entries(dataFromJsonSensors).map(([key, value]) => ({ sensor: key, value }));
             console.log("data from the sensors",dataFromJsonSensors);
             setSensorData(chartData);
           } else if( topic === '/halo/event'){
-            const dataFromJsonEvents = JSON.parse(message.toString());
-            setIsPopped(true);
-            const dataForDataCmp = Object.entries(dataFromJsonEvents).map(([key, value]) => ({ sensor: key, value }));
-            setPeople(dataForDataCmp);
-            console.log("data from the events",dataForDataCmp);
-          }
+            const messageString = message.toString();
+            const locationMatch = messageString.match(/Location #:\s*(.*?),/);
+            const eventMatch = messageString.match(/Event:\s*(.*?),/);
+
+            if (!locationMatch || !eventMatch) {
+                console.error('Could not find location or event in message:', message.toString());
+                return;
+            }
+
+            const location = locationMatch[1].trim();
+            const eventName = eventMatch[1].trim();
+
+            const person = {
+                date: new Date().toLocaleString(),
+                location: location,
+                eventName: eventName,
+            };
+            setPeople(person);
+            console.log("data from the events", person);
+            setDetails(person);
+        }
         } catch (error) {
           console.error('Error parsing JSON:', error);
           console.error('Offending message:', message.toString());
@@ -76,7 +100,7 @@ export function Helo() {
       <div className="helo-container">
         <SensorApexChart data={sensorData}/>
         <SensorDetailCard details={details}/>
-        <SensorDataCmp isPopped={isPopped}/>
+        <SensorDataCmp people={people}/>
         <SensorResultImg isCriminalLogo={true}/>
       </div>
     );

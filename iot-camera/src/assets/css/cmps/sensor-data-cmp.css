@@ -1,3 +1,4 @@
 .sensor-data-cmp{
+    margin:50px 0px 50px 0px;
     grid-area: sensor-data-cmp;
 }

@@ -32,7 +32,7 @@ const SensorApexChart = ({ data }) => {
           distributed: true,
         }
       },
-      colors: ['#1976d2','#ff0000','#ff0000','#ff0000','#ff0000'],
+      colors: ['#1976d2'],
       dataLabels: {
         formatter: function(val, opt) {
           const goals = opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex].goals;
@@ -47,72 +47,60 @@ const SensorApexChart = ({ data }) => {
         showForSingleSeries: true,
         customLegendItems: ['Actual', 'Total'],
         markers: {
-          fillColors: ['#1976d2', '#000000', '#000000', '#000000']
+          fillColors: ['#1976d2']
         }
       }
     },
   });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      // Use the provided data prop or fallback to dummyData
       const currentData = data;
       console.log("Log of data from parent ", currentData);
   
-      const seriesData = Object.entries(currentData)
-        .filter(([key]) => key !== 'location') // Exclude 'location' key
-        .map(([key, value]) => {
-          let expectedValue;
-          switch (key) {
+      const seriesData = currentData.map(item => {
+        let expectedValue;
+        let color;
+        switch (item.sensor) {
             case 'Temp':
-              expectedValue = parseFloat(value) * 1;
-              break;
+                expectedValue = 70; // replace with expected value for Temp
+                break;
             case 'RH':
-              expectedValue = parseFloat(value) /1.5;
-              break;
-              case 'Move':
-              expectedValue = parseFloat(value) / 2;
-              break;
-              case 'TVOC':
-              expectedValue = parseFloat(value) / 2;
-              break;
-              case 'Lux':
-              expectedValue = parseFloat(value) / 2;
-              break;              
-              case 'CO2eq':
-              expectedValue = parseFloat(value) / 2;
-              break;
-            // Add more cases as needed
+                expectedValue = 50; // replace with expected value for RH
+                break;
+            // add more cases for other sensors
             default:
-              expectedValue = parseFloat(value) * 1.1;
-          }
-  
-          return {
-            x: key,
-            y: parseFloat(value), // Convert to float, assuming all other values are numeric
+                expectedValue = parseFloat(item.value) * 1.1;
+        }
+    
+        if (parseFloat(item.value) > expectedValue) {
+            color = '#1976d2';
+        } else {
+            color = '#FF0000';
+        }
+    
+        return {
+            x: item.sensor,
+            y: parseFloat(item.value),
+            color: color,
             goals: [
-              {
-                name: 'Expected',
-                value: expectedValue,
-                strokeWidth: 5,
-                strokeHeight: 10,
-                strokeColor: '#000000'
-              }
+                {
+                    name: 'Expected',
+                    value: expectedValue,
+                    strokeWidth: 5,
+                    strokeHeight: 10,
+                    strokeColor: '#000000'
+                }
             ]
-          };
-        });
-  
-      console.log("Log of seriesData",seriesData);
+        };
+    });
+    
+    console.log("Log of seriesData", seriesData);
   
       setChartData(prevState => ({
         ...prevState,
         series: [{ name: 'Actual', data: seriesData }]
       }));
-    }, 2000); // Delay of 2 seconds
-  
-    // Cleanup function to clear the timeout if the component unmounts before the timeout finishes
-    return () => clearTimeout(timer);
-  }, [data]);
+    }, [data]);
 
   return (
     <div>

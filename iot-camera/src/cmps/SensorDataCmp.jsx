@@ -26,33 +26,36 @@ const dummyPeople = [
   // Add more objects for more rows
 ];
 
-function SensorDataCmp({ people,isPopped}) {
-  console.log("in dataTmp People:", people);
+function SensorDataCmp({people}) {
+  console.log("SensorDataCmp People:", people);
   const [open, setOpen] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState(null);
+  const [rows, setRows] = useState([]);
 
-//   let onepeople = people[people.length - 1];
-//   console.log("onepeople:", onepeople);
-// Changing the flat()...
-const [rows, setRows] = useState([]);
+  // const rows = people ? [{
+  //   ...people,
+  //   id: 0,
+  //   date: people.date,
+  //   eventName: people.eventName,
+  //   location: people.location,
+  //   suspicious: "Yes",
+  // }] : [];
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setRows(
-      people.map((person, index) => ({
-        ...person,
-        id: index,
-        date: isPopped ? new Date().toLocaleString() : person.Date,
-        eventName: person.EventName,
-        location: person.Location,
-        suspicious: person.Suspeciouse ? "Yes" : "No",
-      }))
-    );
-  }, 3000); // Delay of 1 second
-
-  // Cleanup function to clear the timeout if the component unmounts before the timeout finishes
-  return () => clearTimeout(timer);
-}, [people, isPopped]);
+  useEffect(() => {
+    if (people) {
+      setRows(prevRows => [
+        ...prevRows,
+        {
+          ...people,
+          id: prevRows.length,
+          date: people.date,
+          eventName: people.eventName,
+          location: people.location,
+          suspicious: "Yes",
+        }
+      ]);
+    }
+  }, [people]);
 
   
   const handleRowClick = (params) => {
