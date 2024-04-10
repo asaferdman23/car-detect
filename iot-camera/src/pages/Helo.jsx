@@ -23,7 +23,6 @@ export function Helo() {
       const client = mqtt.connect('mqtt://192.168.0.60:8080', {
         username: 'edgeRtu',
         password: 'Batw1ngs-User12!',
-        //192.168.0.60
       });
   
       client.on('connect', () => {
@@ -56,15 +55,19 @@ export function Helo() {
             console.log("data from the sensors",dataFromJsonSensors);
             setSensorData(chartData);
           } else if( topic === '/halo/event'){
+            console.log("halo event message:", message.toString());
             const messageString = message.toString();
             const locationMatch = messageString.match(/Location #:\s*(.*?),/);
-            const eventMatch = messageString.match(/Event:\s*(.*?),/);
-
-            if (!locationMatch || !eventMatch) {
+            const splitMessage = messageString.split('Event:');
+            if (splitMessage.length < 3) {
+                console.error('Could not find two occurrences of "Event:" in message:', message.toString());
+                return;
+            }
+            const eventMatch = splitMessage[2].match(/(.*?)\s*,/);            if (!locationMatch || !eventMatch) {
                 console.error('Could not find location or event in message:', message.toString());
                 return;
             }
-
+            console.log("eventMatch", eventMatch);
             const location = locationMatch[1].trim();
             const eventName = eventMatch[1].trim();
 
@@ -88,13 +91,6 @@ export function Helo() {
         client.end();
       };
     }, []);
-  
-    // Simulate a delay in receiving MQTT data (This might be removed if not needed)
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     setSensorData(dummyData); // Set your dummyData here
-    //   }, 1000);
-    // }, []);
   
     return (
       <div className="helo-container">
