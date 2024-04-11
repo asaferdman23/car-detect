@@ -1,0 +1,43 @@
+.about-us-main{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    grid-area: home-main;
+}
+.aboutImg{
+    width: auto;
+    height: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.aboutImg:hover{
+    transform: scale(1.05);
+}
+
+.about-us-main h1{
+    font-family: 'Roboto', sans-serif;
+    color: #1976d2;
+    font-size: 50px;
+    text-align: center;
+}
+.about-us-main p{
+    color: #1976d2;
+    font-size: 40px;
+    margin-top: 20px;
+    text-align: center;
+}
+.collaborators-ul{
+    color: #1976d2;
+    font-size: 50px;
+    font-weight: bold;
+    list-style: none;
+    font-size: large;
+}
+.collaborators-ul li{
+    margin-top: 10px;
+    font-size: 50px;
+
+}

@@ -1,0 +1,23 @@
+.settings-main{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    grid-area: home-main;
+  }
+.settings-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .settings-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .option-name {
+    margin-left: 10px;
+  }

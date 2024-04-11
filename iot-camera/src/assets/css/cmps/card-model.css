@@ -3,8 +3,8 @@
   border: 1px solid #ddd;
   border-radius: 20px;
   justify-content: center;
-  width: 500px; /* adjust width as needed */
-  height: 400px; /* adjust width as needed */
+  width: 600px; /* adjust width as needed */
+  height: 500px; /* adjust width as needed */
 }
 
 .card.modal{

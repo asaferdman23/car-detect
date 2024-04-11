@@ -1,6 +1,9 @@
 /* Pages */
 @import "./pages/home.css";
 @import "./pages/helo.css";
+@import "./pages/aboutUs.css";
+@import "./pages/settings.css";
+
 
 /* Components */
 @import "./cmps/app-footer.css";

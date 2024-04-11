@@ -30,10 +30,10 @@ const SideBarMenu = () => {
             <CustomNavLink to="/cars">Cars</CustomNavLink>
           </li>
           <li>
-            <CustomNavLink to="/aboutus">About Us</CustomNavLink>
+            <CustomNavLink to="/settings">Settings</CustomNavLink>
           </li>
           <li>
-            <CustomNavLink to="/settings">Settings</CustomNavLink>
+            <CustomNavLink to="/aboutUs">About Us</CustomNavLink>
           </li>
         </ul>
       </nav>

@@ -34,6 +34,7 @@ const SensorApexChart = ({ data }) => {
       },
       colors: ['#1976d2'],
       dataLabels: {
+        enabled: true,
         formatter: function(val, opt) {
           const goals = opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex].goals;
           if (goals && goals.length) {
@@ -41,6 +42,9 @@ const SensorApexChart = ({ data }) => {
           }
           return val;
         }
+      },
+      xaxis:{
+        categories:[],
       },
       legend: {
         show: true,
@@ -56,32 +60,31 @@ const SensorApexChart = ({ data }) => {
   useEffect(() => {
       const currentData = data;
       console.log("Log of data from parent ", currentData);
-  
       const seriesData = currentData.map(item => {
         let expectedValue;
-        let color;
+        let barColor = parseFloat(currentData.value) > expectedValue ? '#1976d2' : '#FF0000';
         switch (item.sensor) {
             case 'Temp':
-                expectedValue = 70; // replace with expected value for Temp
+                // expectedValue = 70; // replace with expected value for Temp
                 break;
             case 'RH':
-                expectedValue = 50; // replace with expected value for RH
+                // expectedValue = 50; // replace with expected value for RH
                 break;
             // add more cases for other sensors
             default:
                 expectedValue = parseFloat(item.value) * 1.1;
         }
     
-        if (parseFloat(item.value) > expectedValue) {
-            color = '#1976d2';
-        } else {
-            color = '#FF0000';
-        }
+        // if (parseFloat(item.value) > expectedValue) {
+        //     color = '#1976d2';
+        // } else {
+        //     color = '#FF0000';
+        // }
     
         return {
             x: item.sensor,
             y: parseFloat(item.value),
-            color: color,
+            color: barColor,
             goals: [
                 {
                     name: 'Expected',
@@ -93,9 +96,7 @@ const SensorApexChart = ({ data }) => {
             ]
         };
     });
-    
-    console.log("Log of seriesData", seriesData);
-  
+      
       setChartData(prevState => ({
         ...prevState,
         series: [{ name: 'Actual', data: seriesData }]
@@ -106,7 +107,10 @@ const SensorApexChart = ({ data }) => {
     <div>
       <div id="sensors-apex-chart">
         <h1 className='h1-class-chart'>Sensors location: {dummyData.location}</h1>
-        <ReactApexChart options={chartData.options} series={chartData.series} type="bar" height={350} />
+        <ReactApexChart 
+          options={chartData.options} 
+          series={chartData.series} 
+          type="bar" height={600} />
       </div>
       <div id="html-dist"></div>
     </div>

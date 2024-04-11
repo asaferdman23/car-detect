@@ -10,9 +10,9 @@ import "../assets/css/cmps/data-cmp.css";
 
 const columns = [
   { field: "date", headerName: "Date", width: 500 },
-  { field: "location", headerName: "Location", width: 300 },
-  { field: "name", headerName: "Name", width: 300 },
-  { field: "plateNumber", headerName: "Plate Number", width: 300 },
+  { field: "location", headerName: "Location", width: 500 },
+  { field: "name", headerName: "Name", width: 400 },
+  { field: "plateNumber", headerName: "Plate Number", width: 500 },
   { field: "suspicious", headerName: "Suspicious", width: 300 },
 ];
 
@@ -33,14 +33,6 @@ const rows = onepeople ? onepeople.map((person, index) => ({
   suspicious: person.Suspeciouse ? "Yes" : "No", // Convert boolean to string if necessary
 })) : [];
   
-  // const lastArray = people[people.length - 1];
-  // const lastPerson = lastArray[lastArray.length - 1];
-  
-  // console.log(lastPerson); // Logs the last person from the last array
-
-
-// console.log(lastPerson); // Logs the last person from the last array
-
   const handleRowClick = (params) => {
     setSelectedPerson(params.row);
     setOpen(true);

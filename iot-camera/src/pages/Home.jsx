@@ -76,8 +76,8 @@ function Home() {
         <ResultImg isCriminalLogo={isCrimnalLogo} />
       </div>
       <Modal
-        isOpen={publishSuccess === true}
-        onRequestClose={closeModal}
+        isOpen={publishSuccess}
+        onRequesClose={closeModal}
         contentLabel="Publish Success"
         className="Modal"
         overlayClassName="Overlay"

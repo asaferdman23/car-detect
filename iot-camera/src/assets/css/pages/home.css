@@ -5,7 +5,7 @@ grid-area: home-main;
 .container-home {
   display: grid;
   grid-template-columns: 1fr 0.5fr 2fr;
-  grid-template-rows: 1fr 0.5fr;
-  padding: 1em;
+  grid-template-rows: 1fr 100px;
+  padding: 2em;
   gap: 7px;
 }

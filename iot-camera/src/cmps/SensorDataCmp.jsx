@@ -32,15 +32,6 @@ function SensorDataCmp({people}) {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [rows, setRows] = useState([]);
 
-  // const rows = people ? [{
-  //   ...people,
-  //   id: 0,
-  //   date: people.date,
-  //   eventName: people.eventName,
-  //   location: people.location,
-  //   suspicious: "Yes",
-  // }] : [];
-
   useEffect(() => {
     if (people) {
       setRows(prevRows => [
@@ -74,7 +65,7 @@ function SensorDataCmp({people}) {
         rows={rows}
         columns={columns}
         onRowClick={handleRowClick}
-        pageSize={5}
+        pageSize={3}
       />
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Person Details</DialogTitle>

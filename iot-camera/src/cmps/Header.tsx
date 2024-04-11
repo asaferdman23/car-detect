@@ -56,7 +56,8 @@ const Header = () => {
               <div className="header-left">
                 <img className="header-logo" alt="motoLOGO" src={logo} />
                 <h1 className="header-brand-logo">Moto Detect</h1>
-                <Box className="header-search" sx={{borderRadius: "5px" ,background:"white"}}>
+                </div>
+                <Box className="header-search" sx={{borderRadius: "5px" ,background:"white",alignSelf:'center'}}>
                   <TextField 
                     sx={{ color:"white",width: "100%", height: "100%" ,
                     borderRadius: "5px" ,background:"#1976d2"}}
@@ -65,7 +66,6 @@ const Header = () => {
                     InputProps={{ endAdornment: <SearchIcon /> }}
                   />
                 </Box>
-              </div>
               <Typography
                 variant="h6"
                 noWrap

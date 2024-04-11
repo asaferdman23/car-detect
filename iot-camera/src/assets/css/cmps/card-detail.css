@@ -7,12 +7,12 @@
     border-radius: 20px;
     justify-content: start;
     padding-left: 20px;
-    width: 500px; /* adjust width as needed */
-    height: 400px; /* adjust width as needed */
+    width: 600px; /* adjust width as needed */
+    height: 500px; /* adjust width as needed */
 }
 .card-detail p{
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 1.5em;
     color: #333;
     line-height: 4; /* adjust as needed */
     /* can you make the lines more space ???
