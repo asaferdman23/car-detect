@@ -24,7 +24,7 @@ const SideBarMenu = () => {
             <CustomNavLink to="/">Overview</CustomNavLink>
           </li>
           <li>
-            <CustomNavLink to="/helo">Halo</CustomNavLink>
+            <CustomNavLink to="/sensor">Halo</CustomNavLink>
           </li>
           <li>
             <CustomNavLink to="/cars">Cars</CustomNavLink>

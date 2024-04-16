@@ -3,10 +3,9 @@ import { isCriminalFound } from './criminalFinder.service.js'; // Adjust the pat
 import  people  from '../assets/data/people.js'; // Adjust the path as needed
 
 export function connectToMqtt(onMessage) {
-    let details=""
     const options = {
-      username: 'edgeRtu',
-      password: 'Batw1ngs-User12!'
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
     };
   
     //Batw1ngs-Adm1n1!
@@ -19,14 +18,11 @@ export function connectToMqtt(onMessage) {
     });
   
     client.on('message', function (topic, message) {
-          // message is Buffer
     const data = JSON.parse(message.toString());
     if (topic === '/halo/event') {
-        console.log("topic is ",topic);    
         updateEvent(data);
 
     } else if (topic === '/halo/sensors') {
-        console.log("topic is ",topic);   
         updateFromSensor(data)
     }
     console.log("Client:", client);
@@ -37,13 +33,9 @@ export function connectToMqtt(onMessage) {
 // Function to handle data from /halo/event topic
 function updateEvent(data) {
     console.log("Event Data:", data);
-    // Here, you can add logic to save or process this event data
-    // For example, saving to a database, logging, or triggering other actions
 }
 
 // Function to handle data from /halo/sensors topic
 function updateFromSensor(data) {
     console.log("Sensor Data:", data);
-    // Similar to updateEvent, implement your logic to save or process sensor data here
-    // This could involve parsing the data for specific conditions, storing in a database, etc.
 }

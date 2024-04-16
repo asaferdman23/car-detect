@@ -17,11 +17,6 @@ function AboutUs() {
           alt="Asaf Erdman"
         />
       </a>
-      <p>Collaborators:</p>
-      <ul className="collaborators-ul">
-        <li>Shany Gregor</li>
-        <li>Eitan Haimovich</li>
-      </ul>
     </div>
   );
 }

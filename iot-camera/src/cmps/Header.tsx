@@ -50,17 +50,13 @@ const Header = () => {
   return (
     <header className="header">
       <section className="header_container">
-        <AppBar sx={{boxShadow: "none"}}>
-          <Container maxWidth="xxl">
+        <AppBar sx={{boxShadow: "none",backgroundColor:'rgb(5, 30, 52)' } }>
+          <Container sx={{alignItems:"space-between"}}>
             <Toolbar disableGutters>
-              <div className="header-left">
-                <img className="header-logo" alt="motoLOGO" src={logo} />
-                <h1 className="header-brand-logo">Moto Detect</h1>
-                </div>
                 <Box className="header-search" sx={{borderRadius: "5px" ,background:"white",alignSelf:'center'}}>
                   <TextField 
                     sx={{ color:"white",width: "100%", height: "100%" ,
-                    borderRadius: "5px" ,background:"#1976d2"}}
+                    borderRadius: "5px"}}
                     size="medium"
                     placeholder="Search"
                     InputProps={{ endAdornment: <SearchIcon /> }}
@@ -147,7 +143,7 @@ const Header = () => {
                 ))}
               </Box>
 
-              <Box sx={{ flexGrow: 0 }}>
+              <Box sx={{ml: 'auto',display:"flex",alignContent:"end"}}>  
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt="Asaf" src={userLogo} />

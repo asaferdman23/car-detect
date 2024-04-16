@@ -11,7 +11,7 @@ import { useEffect,useState } from "react";
 import mqtt from "mqtt"
 
 
-export function Helo() {
+export function SensorExample() {
     const [sensorData, setSensorData] = useState([]);
     const [details, setDetails] = useState(null);
     const [people, setPeople] = useState(null);
@@ -21,8 +21,8 @@ export function Helo() {
     useEffect(() => {
       // Setup MQTT connection
       const client = mqtt.connect('mqtt://192.168.0.60:8080', {
-        username: 'edgeRtu',
-        password: 'Batw1ngs-User12!',
+        username: process.env.USERNAME,
+        password: process.env.PASSWORD,
       });
   
       client.on('connect', () => {

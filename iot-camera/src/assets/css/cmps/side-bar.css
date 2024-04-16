@@ -3,21 +3,11 @@
   grid-area: sidebar;
   position: fixed;
   display: flex;
+  flex: auto;
   flex-direction: column; /* Changed to ensure children stack vertically */
-  width: 225px;
   height: 100vh;
-  left: 0;
   border-radius: 10px;
-  background-color: #1976d2;
   z-index: 1; /* Ensure the sidebar is above other elements */
-}
-
-.side-bar-nav {
-  display: grid;
-  padding: 20px;
-  justify-content: center;
-  width: 100%; /* Take up full width of sidebar */
-  margin-top: 100px;
 }
 
 .nav-links li {

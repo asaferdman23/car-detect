@@ -1,7 +1,12 @@
 .header {
     grid-area: header;
     padding: 30px;
+    z-index: 0;
 }
+.header_container {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+  }
 
   .header-brand-logo {
     padding: 10px 70px 5px 10px;

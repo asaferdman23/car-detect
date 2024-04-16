@@ -11,7 +11,7 @@ export function matchCarPlateWithPeople(carPlate) {
   
   if (person) {
     console.log("Person found inside matchCarPlateWithPeople:",  person.name); // Log the entire object for debug
-    return person.name; // Return the person's name
+    return person.name;
   } else {
     console.log("No person found with car plate:", carPlate);
     return null;
@@ -25,7 +25,7 @@ export function extractImgFromPeople(carPlate) {
   
   if (person) {
     console.log("Person found inside matchCarPlateWithPeople:",  person.imgSrc); // Log the entire object for debug
-    return person.imgSrc; // Return the person's name
+    return person.imgSrc;
   } else {
     console.log("No person found with car plate:", carPlate);
     return null;
@@ -33,17 +33,13 @@ export function extractImgFromPeople(carPlate) {
 }
 // Updated parser to extract Time and Plate from the new message format
 export function parseMessage(message) {
-  console.log("Before Parsing " + message);
   const carPlateNumber = extractCarPlateNumber(message);
   const peopleImg = extractImgFromPeople(carPlateNumber);
-  console.log("what is peopleImg",peopleImg);
-  console.log("what is carPlateNumber =", carPlateNumber);
+
   let isPersonSuspecious = isCriminalFound(carPlateNumber);
   let peopleName = matchCarPlateWithPeople(carPlateNumber);
-  console.log("personName: AFTER MATCHING ",peopleName);
   const regex = /(.*): Plate #: (\w+), Camera ID: (.*), Direction: (\d+)/;
   const match = message.match(regex);
-  console.log("After Parsing " + match);
   if (match) {
     return {
       Date: match[1], // Extracted time from the message
@@ -55,12 +51,12 @@ export function parseMessage(message) {
     };
   } else {
     return {
-      Date: match[1], // Extracted time from the message
-      PlateNumber: match[2], // Extracted car plate number from the message
-      Name: peopleName ? peopleName : "Unkown", // Name unknown from MQTT message
-      Suspeciouse: isPersonSuspecious ? isPersonSuspecious : false, // Criminal status unknown from MQTT message
+      Date: match[1],
+      PlateNumber: match[2],
+      Name: peopleName ? peopleName : "Unkown", 
+      Suspeciouse: isPersonSuspecious ? isPersonSuspecious : false, 
       Location: match[3],
-      Imgsrc:peopleImg ? peopleImg : "" // Extracted location from the message
+      Imgsrc:peopleImg ? peopleImg : ""
     };
   }
 }
@@ -77,8 +73,8 @@ let messages = [];
 export function connectToMqtt(onMessage,onPublish) {
   let details=""
   const options = {
-    username: 'edgeRtu',
-    password: 'Batw1ngs-User12!'
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
   };
 
   //Batw1ngs-Adm1n1!
@@ -95,13 +91,8 @@ export function connectToMqtt(onMessage,onPublish) {
     // const carPlateNumber = extractCarPlateNumber(message.toString());
     // console.log("Car Plate Number:", carPlateNumber);
     details = parseMessage(rawMessage);
-    console.log("Details before the if:", details);
     if (details) {
-      console.log("Details:", details);
-      //let personArrived = matchCarPlateWithPeople(details.PlateNumber);
-      //console.log(`${personArrived} is arrived`);
       messages.push(details);
-      console.log("Messages after pushing details:", messages);
       onMessage(details);
 
       const publishData = {
@@ -132,7 +123,6 @@ export const getMessages = () => {
   return messages;
 }
 
-// please make an exported boolean function that will be true if the mqtt client publish was a sucsess
 export function wasPublishSuccessful(err) {
   return !err;
 }

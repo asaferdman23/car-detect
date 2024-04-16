@@ -6,7 +6,7 @@ function AppFooter() {
     <div className="app-footer">
       {typeof document !== 'undefined' && (
         <div className="footer" id="footer">
-          <p>© {currentYear} Motorola Solutions. All rights reserved.</p>
+          <p>© {currentYear} <a href="https://www.linkedin.com/in/asaferdman/">Asaf Erdman</a>. All rights reserved. </p>
         </div>
       )}
       </div>
