@@ -69,7 +69,7 @@ export default function CustomizedList() {
           <FireNav component="nav" disablePadding>
             <ListItemButton component="a" href="/">
               <ListItemIcon sx={{ fontSize: 40 }}>
-              <DirectionsCar sx={{height:"auto",}}/> {/* Use the DirectionsCar icon here */}
+              <DirectionsCar sx={{height:"auto",}}/>
               </ListItemIcon>
               <ListItemText
                 sx={{ my: 0 }}
