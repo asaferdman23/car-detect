@@ -4,8 +4,8 @@ import  people  from '../assets/data/people.js'; // Adjust the path as needed
 
 export function connectToMqtt(onMessage) {
     const options = {
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
+      username: import.meta.env.VITE_USERNAME,
+      password: import.meta.env.VITE_PASSWORD,
     };
   
     //Batw1ngs-Adm1n1!

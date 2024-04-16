@@ -67,7 +67,7 @@ export default function CustomizedList() {
       >
         <Paper elevation={0} sx={{ maxWidth: 256 }}>
           <FireNav component="nav" disablePadding>
-            <ListItemButton component="a" href="#customized-list">
+            <ListItemButton component="a" href="/">
               <ListItemIcon sx={{ fontSize: 40 }}>
               <DirectionsCar sx={{height:"auto",}}/> {/* Use the DirectionsCar icon here */}
               </ListItemIcon>
@@ -83,7 +83,7 @@ export default function CustomizedList() {
             </ListItemButton>
             <Divider />
             <ListItem component="div" disablePadding>
-              <ListItemButton sx={{ height: 56 }}>
+              <ListItemButton sx={{ height: 56 }} component={Link} to="/">
                 <ListItemIcon>
                   <Home color="primary" />
                 </ListItemIcon>

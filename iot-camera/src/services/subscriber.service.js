@@ -73,8 +73,8 @@ let messages = [];
 export function connectToMqtt(onMessage,onPublish) {
   let details=""
   const options = {
-    username: process.env.USERNAME,
-    password: process.env.PASSWORD,
+    username: import.meta.env.VITE_USERNAME,
+    password: import.meta.env.VITE_PASSWORD,
   };
 
   //Batw1ngs-Adm1n1!

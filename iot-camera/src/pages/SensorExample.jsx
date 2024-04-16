@@ -21,8 +21,8 @@ export function SensorExample() {
     useEffect(() => {
       // Setup MQTT connection
       const client = mqtt.connect('mqtt://192.168.0.60:8080', {
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
+        username: import.meta.env.VITE_USERNAME,
+        password: import.meta.env.VITE_PASSWORD,
       });
   
       client.on('connect', () => {
