@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 
-import logo from "/imgs/M_blue.png";
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,7 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
 import AdbIcon from "@mui/icons-material/Adb";
-import userLogo from "/imgs/linkedin_crop.jpg";
+import userLogo from '../../public/imgs/linkedin_crop.jpg';
 import "../assets/css/index.css";
 
 const pages = [];

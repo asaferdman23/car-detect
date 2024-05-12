@@ -19,18 +19,18 @@
 
 .about-us-main h1{
     font-family: 'Roboto', sans-serif;
-    color: #1976d2;
+    color: rgb(5, 30, 52);
     font-size: 50px;
     text-align: center;
 }
 .about-us-main p{
-    color: #1976d2;
+    color: rgb(5, 30, 52);
     font-size: 40px;
     margin-top: 20px;
     text-align: center;
 }
 .collaborators-ul{
-    color: #1976d2;
+    color: rgb(5, 30, 52);
     font-size: 50px;
     font-weight: bold;
     list-style: none;
