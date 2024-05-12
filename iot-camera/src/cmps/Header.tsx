@@ -16,12 +16,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
 import AdbIcon from "@mui/icons-material/Adb";
-import userLogo from '../../public/imgs/linkedin_crop.jpg';
+// import userLogo from '../../public/imgs/linkedin_crop.jpg';
 import "../assets/css/index.css";
 
 const pages = [];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
+const userLogo = '/imgs/linkedin_crop.jpg';
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
